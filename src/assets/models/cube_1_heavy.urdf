@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<robot name="cube_1_heavy">
+    <link name="cube_link_1_heavy">
+        <inertial>
+            <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+
+            <mass value="2.5"/>
+
+            <!-- I = m*s^2/6  for a cube with side s=0.092 m, m=2.5 kg -->
+            <!-- I = 2.5 * 0.092^2 / 6 = 0.003527 kg*m^2 -->
+            <inertia
+                ixx="0.00352667"
+                ixy="0.0"
+                ixz="0.0"
+                iyy="0.00352667"
+                iyz="0.0"
+                izz="0.00352667"/>
+        </inertial>
+
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="meshes/objects/cube_1.stl"/>
+            </geometry>
+            <material name="DarkBlue">
+                <color rgba="0.1 0.1 0.5 1.0"/>
+            </material>
+        </visual>
+
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <box size="0.092 0.092 0.092"/>
+            </geometry>
+        </collision>
+    </link>
+</robot>

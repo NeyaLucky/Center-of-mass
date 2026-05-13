@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<robot name="parallelepipede_large">
+    <link name="parallelepipede_large_link">
+        <inertial>
+            <!-- CoM scaled 1.5× from parallelepipede: (0.05,0.02,-0.04)*1.5 -->
+            <origin rpy="0 0 0" xyz="0.075 0.030 -0.055"/>
+
+            <mass value="2.5"/>
+
+            <!-- Solid box a=0.30, b=0.15, c=0.12, m=2.5 kg, at CoM -->
+            <!-- Ixx = m*(b^2+c^2)/12 = 2.5*(0.0225+0.0144)/12 = 0.007688 -->
+            <!-- Iyy = m*(a^2+c^2)/12 = 2.5*(0.09+0.0144)/12  = 0.021750 -->
+            <!-- Izz = m*(a^2+b^2)/12 = 2.5*(0.09+0.0225)/12  = 0.023438 -->
+            <inertia
+                ixx="0.007688"
+                ixy="0.002"
+                ixz="-0.002"
+                iyy="0.021750"
+                iyz="0.005"
+                izz="0.023438"/>
+        </inertial>
+
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <box size="0.30 0.15 0.12"/>
+            </geometry>
+            <material name="Red">
+                <color rgba="0.8 0.2 0.2 1.0"/>
+            </material>
+        </visual>
+
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <box size="0.30 0.15 0.12"/>
+            </geometry>
+        </collision>
+    </link>
+</robot>

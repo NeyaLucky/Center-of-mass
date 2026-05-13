@@ -1,0 +1,52 @@
+{
+    "name": "XArm ROS 2 Development",
+    "dockerFile": "../Dockerfile",
+    
+    "runArgs": [
+        "--gpus=all",
+        "--network=host",
+        "--privileged",
+        "-e", "DISPLAY=:1",
+        "--env=QT_X11_NO_MITSHM=1",
+        "-v", "/tmp/.X11-unix:/tmp/.X11-unix:rw",
+        "-v", "/dev:/dev"
+    ],
+
+    "containerEnv": {
+        "DISPLAY": ":1",
+        "QT_X11_NO_MITSHM": "1",
+        "LIBGL_ALWAYS_SOFTWARE": "1"
+    },
+    
+    "workspaceFolder": "/root/ros2/ws",
+    "workspaceMount": "source=${localWorkspaceFolder},target=/root/ros2/ws,type=bind",
+
+    "mounts": [ "source=/home/veronika/ProbablyBartender,target=/mnt/ProbablyBartender,type=bind,consistency=cached"],
+    
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "ms-iot.vscode-ros",
+                "ms-vscode.cpptools",
+                "twxs.cmake",
+                "visualstudioexptteam.vscodeintellicode"
+            ],
+
+            "settings": {
+                "python.defaultInterpreterPath": "/usr/bin/python3",
+                "python.autoComplete.extraPaths": [
+                    "/opt/ros/humble/lib/python3.10/site-packages"
+                ],
+                "python.analysis.extraPaths": [
+                    "/opt/ros/humble/lib/python3.10/site-packages"
+                ],
+                "terminal.integrated.shell.linux": "/bin/bash"
+            }
+        }
+    },
+
+    "postCreateCommand": "echo 'source /opt/ros/humble/setup.bash' >> ~/.bashrc",
+    "remoteUser": "root"
+}

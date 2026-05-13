@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  xarm_dev:
+    build: .
+    image: xarm_grasp:v1
+    container_name: xarm_container
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./workspace:/root/workspace
+    environment:
+      - DISPLAY=${DISPLAY}
+    network_mode: host
+    privileged: true
+    volumes:
+      - ./workspace:/root/workspace
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - /dev:/dev

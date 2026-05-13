@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<robot name="bottle_mybottle_heavy">
+    <link name="bottle_heavy_link">
+        <inertial>
+            <!-- CoM = link origin = 4 cm below geometric centre (nails at bottom) -->
+            <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+            <mass value="2.0"/>
+            <!-- Inertia about CoM (which is 4 cm below geometric centre):
+                 d = 0.04 m  (parallel-axis shift along cylinder axis)
+                 Ixx_CoM = Ixx_gc - M*d² = 0.007279 - 2.0*0.0016 = 0.003879
+                 Izz unchanged (shift is along rotation axis) = 0.001225 -->
+            <inertia ixx="0.003879" ixy="0.0" ixz="0.0"
+                     iyy="0.003879" iyz="0.0"
+                     izz="0.001225"/>
+        </inertial>
+        <visual>
+            <!-- Geometric centre is 4 cm "above" CoM in local -Z (toward gripper) -->
+            <origin rpy="0 0 0" xyz="0 0 -0.04"/>
+            <geometry>
+                <cylinder radius="0.035" length="0.20"/>
+            </geometry>
+            <material name="DarkBlue">
+                <color rgba="0.1 0.2 0.8 0.85"/>
+            </material>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 -0.04"/>
+            <geometry>
+                <cylinder radius="0.035" length="0.20"/>
+            </geometry>
+        </collision>
+    </link>
+</robot>

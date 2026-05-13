@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<robot name="cube_2_heavy">
+    <link name="cube_link_2_heavy">
+        <inertial>
+            <!-- Same CoM offset as cube_2: shifted -17.12 mm along Z -->
+            <origin rpy="0 0 0" xyz="0.0 0.0 -0.01712"/>
+
+            <mass value="2.5"/>
+
+            <!-- Inertia scaled from cube_2 (0.5 kg) by factor 5 -->
+            <inertia
+                ixx="0.00302765"
+                ixy="0.0"
+                ixz="0.0"
+                iyy="0.00302765"
+                iyz="0.0"
+                izz="0.00376005"/>
+        </inertial>
+
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="meshes/objects/cube_2.stl"/>
+            </geometry>
+            <material name="DarkYellow">
+                <color rgba="0.5 0.5 0.1 1.0"/>
+            </material>
+        </visual>
+
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <box size="0.092 0.092 0.092"/>
+            </geometry>
+        </collision>
+    </link>
+</robot>

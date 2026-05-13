@@ -1,0 +1,38 @@
+diff --git a/xarm_gazebo/launch/xarm7_beside_table_gazebo.launch.py b/xarm_gazebo/launch/xarm7_beside_table_gazebo.launch.py
+index 92f95f1..8cacb93 100644
+--- a/xarm_gazebo/launch/xarm7_beside_table_gazebo.launch.py
++++ b/xarm_gazebo/launch/xarm7_beside_table_gazebo.launch.py
+@@ -19,6 +19,7 @@ def generate_launch_description():
+     velocity_control = LaunchConfiguration('velocity_control', default=False)
+     add_gripper = LaunchConfiguration('add_gripper', default=False)
+     add_vacuum_gripper = LaunchConfiguration('add_vacuum_gripper', default=False)
++    ros2_control_plugin = LaunchConfiguration('ros2_control_plugin', default='gazebo_ros2_control/GazeboSystem')
+ 
+     add_realsense_d435i = LaunchConfiguration('add_realsense_d435i', default=False)
+ 
+@@ -47,6 +48,7 @@ def generate_launch_description():
+             'velocity_control': velocity_control,
+             'add_gripper': add_gripper,
+             'add_vacuum_gripper': add_vacuum_gripper,
++            'ros2_control_plugin': ros2_control_plugin,
+             'dof': '7',
+             'robot_type': 'xarm',
+             'add_realsense_d435i': add_realsense_d435i,
+diff --git a/xarm_gazebo/worlds/table.world b/xarm_gazebo/worlds/table.world
+index 8c54831..3cbc374 100755
+--- a/xarm_gazebo/worlds/table.world
++++ b/xarm_gazebo/worlds/table.world
+@@ -21,5 +21,13 @@
+       <gravity>0 0 0</gravity>
+     </physics>
+ 
++    <!-- ROS 2 plugins -->
++    <plugin name="gazebo_ros_state" filename="libgazebo_ros_state.so">
++      <ros>
++        <namespace>/gazebo</namespace>
++      </ros>
++      <update_rate>1.0</update_rate>
++    </plugin>
++
+   </world>
+ </sdf>

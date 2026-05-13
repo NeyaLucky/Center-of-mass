@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<robot name="bottle_mybottle">
+    <link name="bottle_link">
+        <inertial>
+            <!-- CoM = link origin = geometric centre of cylinder -->
+            <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+            <mass value="2.0"/>
+            <!-- Solid cylinder  R=0.035 m  H=0.20 m  M=2.0 kg
+                 Ixx = Iyy = M/12*(3R²+H²) = 2/12*(3*0.001225+0.04) = 0.007279
+                 Izz = M/2*R²               = 1.0*0.001225           = 0.001225 -->
+            <inertia ixx="0.007279" ixy="0.0" ixz="0.0"
+                     iyy="0.007279" iyz="0.0"
+                     izz="0.001225"/>
+        </inertial>
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.035" length="0.20"/>
+            </geometry>
+            <material name="LightBlue">
+                <color rgba="0.3 0.6 1.0 0.85"/>
+            </material>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.035" length="0.20"/>
+            </geometry>
+        </collision>
+    </link>
+</robot>
